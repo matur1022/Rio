@@ -254,9 +254,47 @@
 
     /* Tooltip hint */
     .hint { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; }
+
+    /* ── MOBILE ── */
+    #menu-btn { display: none; }
+    #sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 199;
+    }
+    #sidebar-backdrop.visible { display: block; }
+
+    @media (max-width: 768px) {
+      #menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 34px;
+        font-size: 1.15rem;
+        flex-shrink: 0;
+      }
+      #sidebar {
+        position: fixed;
+        top: 0; left: -280px;
+        height: 100%;
+        z-index: 200;
+        transition: left 0.25s ease;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.6);
+      }
+      #sidebar.open { left: 0; }
+      #toolbar-hint { display: none; }
+      #toolbar { flex-wrap: nowrap; overflow-x: auto; gap: 6px; }
+      .btn { padding: 8px 12px; font-size: 0.8rem; }
+      #statusbar { flex-wrap: wrap; gap: 8px; }
+    }
   </style>
 </head>
 <body>
+
+<div id="sidebar-backdrop" onclick="closeSidebar()"></div>
 
 <!-- ════════════════ SIDEBAR ════════════════ -->
 <aside id="sidebar">
@@ -370,6 +408,7 @@
 <div id="main">
 
   <div id="toolbar">
+    <button class="btn btn-secondary" id="menu-btn" onclick="toggleSidebar()" title="Menu">&#9776;</button>
     <button class="btn btn-secondary" onclick="zoom(-0.15)" title="Zoom out">&#8722;</button>
     <span id="zoom-label">100%</span>
     <button class="btn btn-secondary" onclick="zoom(+0.15)" title="Zoom in">&#43;</button>
@@ -688,44 +727,75 @@ function attachDrag(el, table) {
   let ox, oy, otx, oty, dragging = false;
   const svg = document.getElementById('ballroom-svg');
 
+  function startDrag(cx, cy) {
+    dragging = true;
+    const p = svgPtFromXY(cx, cy, svg);
+    ox = p.x; oy = p.y;
+    otx = table.x; oty = table.y;
+  }
+
+  function moveDrag(cx, cy) {
+    if (!dragging) return;
+    const p2 = svgPtFromXY(cx, cy, svg);
+    let nx = otx + (p2.x - ox) / S.PX;
+    let ny = oty + (p2.y - oy) / S.PX;
+    if (S.snap) {
+      nx = Math.round(nx / SNAP_FT) * SNAP_FT;
+      ny = Math.round(ny / SNAP_FT) * SNAP_FT;
+    }
+    const margin = tableMargin(table);
+    table.x = clamp(nx, margin, S.room.w - margin);
+    table.y = clamp(ny, margin, S.room.h - margin);
+    const px = table.x * S.PX + S.PAD;
+    const py = table.y * S.PX + S.PAD;
+    el.setAttribute('transform', `translate(${px},${py}) rotate(${table.rot})`);
+  }
+
+  function endDrag() {
+    dragging = false;
+    el.style.cursor = 'grab';
+    updateStats();
+  }
+
+  // Mouse
   el.addEventListener('mousedown', e => {
     if (e.button !== 0) return;
     e.preventDefault(); e.stopPropagation();
-    dragging = true;
-    const p = svgPt(e, svg);
-    ox = p.x; oy = p.y;
-    otx = table.x; oty = table.y;
     el.style.cursor = 'grabbing';
-
-    const mm = e2 => {
-      if (!dragging) return;
-      const p2 = svgPt(e2, svg);
-      let nx = otx + (p2.x - ox) / S.PX;
-      let ny = oty + (p2.y - oy) / S.PX;
-      if (S.snap) {
-        nx = Math.round(nx / SNAP_FT) * SNAP_FT;
-        ny = Math.round(ny / SNAP_FT) * SNAP_FT;
-      }
-      // clamp inside room
-      const margin = tableMargin(table);
-      table.x = clamp(nx, margin, S.room.w - margin);
-      table.y = clamp(ny, margin, S.room.h - margin);
-
-      const px = table.x * S.PX + S.PAD;
-      const py = table.y * S.PX + S.PAD;
-      el.setAttribute('transform', `translate(${px},${py}) rotate(${table.rot})`);
-    };
-
+    startDrag(e.clientX, e.clientY);
+    const mm = e2 => moveDrag(e2.clientX, e2.clientY);
     const mu = () => {
-      dragging = false;
-      el.style.cursor = 'grab';
+      endDrag();
       document.removeEventListener('mousemove', mm);
       document.removeEventListener('mouseup', mu);
-      updateStats();
     };
-
     document.addEventListener('mousemove', mm);
     document.addEventListener('mouseup', mu);
+  });
+
+  // Touch
+  let touchMoved = false;
+  el.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    touchMoved = false;
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+  }, { passive: true });
+
+  el.addEventListener('touchmove', e => {
+    if (e.touches.length !== 1) return;
+    e.preventDefault();
+    touchMoved = true;
+    const t = e.touches[0];
+    moveDrag(t.clientX, t.clientY);
+  }, { passive: false });
+
+  el.addEventListener('touchend', e => {
+    if (touchMoved) {
+      e.preventDefault();
+      endDrag();
+    }
+    // if not moved, let the click event fire for selection
   });
 }
 
@@ -735,10 +805,13 @@ function tableMargin(t) {
   return t.size * 0.38 / 2 + 1;
 }
 
-function svgPt(e, svg) {
+function svgPtFromXY(cx, cy, svg) {
   const p = svg.createSVGPoint();
-  p.x = e.clientX; p.y = e.clientY;
+  p.x = cx; p.y = cy;
   return p.matrixTransform(svg.getScreenCTM().inverse());
+}
+function svgPt(e, svg) {
+  return svgPtFromXY(e.clientX, e.clientY, svg);
 }
 
 // ══════════════════════════════════════════
@@ -761,6 +834,7 @@ function addTable() {
   S.tables.push(t);
   selectTable(t.id);
   rebuild();
+  if (window.innerWidth <= 768) closeSidebar();
 }
 
 function selectTable(id) {
@@ -985,6 +1059,40 @@ document.getElementById('canvas-wrap').addEventListener('wheel', e => {
   e.preventDefault();
   zoom(e.deltaY < 0 ? 0.1 : -0.1);
 }, { passive: false });
+
+// pinch-to-zoom
+let lastPinchDist = null;
+const cw = document.getElementById('canvas-wrap');
+cw.addEventListener('touchstart', e => {
+  if (e.touches.length === 2) {
+    lastPinchDist = Math.hypot(
+      e.touches[1].clientX - e.touches[0].clientX,
+      e.touches[1].clientY - e.touches[0].clientY
+    );
+  }
+}, { passive: true });
+cw.addEventListener('touchmove', e => {
+  if (e.touches.length === 2 && lastPinchDist !== null) {
+    e.preventDefault();
+    const dist = Math.hypot(
+      e.touches[1].clientX - e.touches[0].clientX,
+      e.touches[1].clientY - e.touches[0].clientY
+    );
+    zoom((dist - lastPinchDist) / 120);
+    lastPinchDist = dist;
+  }
+}, { passive: false });
+cw.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
+
+// ── SIDEBAR TOGGLE (mobile) ──────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-backdrop').classList.toggle('visible');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-backdrop').classList.remove('visible');
+}
 
 // ══════════════════════════════════════════
 //  UTILS
