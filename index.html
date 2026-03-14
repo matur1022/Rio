@@ -16,9 +16,6 @@
       --accent2:   #5b8dee;
       --text:      #dde1f0;
       --text-dim:  #7a7fa8;
-      --floor:     #f7f2e8;
-      --floor-line:#e5ddc8;
-      --wood:      #c8a96e;
     }
 
     body {
@@ -32,280 +29,375 @@
 
     /* ── SIDEBAR ── */
     #sidebar {
-      width: 270px;
-      min-width: 270px;
+      width: 270px; min-width: 270px;
       background: var(--surface);
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       border-right: 1px solid var(--border);
       overflow: hidden;
     }
-
     #sidebar-header {
       padding: 18px 20px 14px;
       background: var(--surface2);
       border-bottom: 1px solid var(--border);
     }
-    #sidebar-header h1 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.5px;
-    }
-    #sidebar-header p {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-top: 3px;
-    }
+    #sidebar-header h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent); letter-spacing: .5px; }
+    #sidebar-header p  { font-size: .75rem; color: var(--text-dim); margin-top: 3px; }
+    #sidebar-body { flex: 1; overflow-y: auto; padding: 14px 16px; }
 
-    #sidebar-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 16px;
-    }
-
-    .section {
-      margin-bottom: 20px;
-    }
+    .section { margin-bottom: 20px; }
     .section-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-dim);
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 10px;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--text-dim);
+      padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 10px;
     }
-
-    label {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-bottom: 3px;
-      margin-top: 9px;
-    }
+    label { display: block; font-size: .8rem; color: var(--text-dim); margin-bottom: 3px; margin-top: 9px; }
     label:first-of-type { margin-top: 0; }
 
-    input[type="number"],
-    input[type="text"],
-    select {
-      width: 100%;
-      padding: 6px 9px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      color: var(--text);
-      font-size: 0.85rem;
-      outline: none;
-      transition: border-color .15s;
+    input[type="number"], input[type="text"], select {
+      width: 100%; padding: 6px 9px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 5px; color: var(--text); font-size: .85rem;
+      outline: none; transition: border-color .15s;
     }
     input:focus, select:focus { border-color: var(--accent2); }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
+    input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
 
     .row { display: flex; gap: 8px; }
     .row > * { flex: 1; }
 
-    /* Buttons */
     .btn {
-      padding: 7px 14px;
-      border: none;
-      border-radius: 5px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: filter .15s, transform .1s;
-      white-space: nowrap;
+      padding: 7px 14px; border: none; border-radius: 5px;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      transition: filter .15s, transform .1s; white-space: nowrap;
     }
     .btn:active { transform: scale(.97); }
-    .btn-primary   { background: var(--accent);  color: #fff; }
+    .btn-primary   { background: var(--accent); color: #fff; }
     .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
     .btn-blue      { background: var(--accent2); color: #fff; }
     .btn-danger    { background: #9b2c2c; color: #fff; }
     .btn:hover     { filter: brightness(1.15); }
     .btn-full      { width: 100%; }
 
-    /* Table type selector */
-    .type-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-bottom: 4px;
-    }
+    .type-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 4px; }
     .type-card {
-      background: var(--bg);
-      border: 2px solid var(--border);
-      border-radius: 6px;
-      padding: 8px 4px 6px;
-      text-align: center;
-      cursor: pointer;
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      transition: border-color .15s, color .15s;
+      background: var(--bg); border: 2px solid var(--border); border-radius: 6px;
+      padding: 8px 4px 6px; text-align: center; cursor: pointer;
+      font-size: .72rem; color: var(--text-dim); transition: border-color .15s, color .15s;
     }
     .type-card svg { display: block; margin: 0 auto 4px; }
-    .type-card.active,
-    .type-card:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .type-card.active, .type-card:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* Color swatches */
-    .swatch-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
+    .swatch-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
     .swatch {
-      width: 22px; height: 22px;
-      border-radius: 4px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color .15s, transform .1s;
+      width: 22px; height: 22px; border-radius: 4px; cursor: pointer;
+      border: 2px solid transparent; transition: border-color .15s, transform .1s;
     }
-    .swatch:hover   { transform: scale(1.15); }
-    .swatch.active  { border-color: #fff; }
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.active { border-color: #fff; }
 
-    /* Selected-table panel */
     #sel-panel { display: none; }
     #sel-panel.visible { display: block; }
-    #no-sel { font-size: 0.82rem; color: var(--text-dim); padding: 6px 0; }
-
-    .val-display {
-      font-size: 0.8rem;
-      color: var(--accent2);
-      margin-top: 2px;
-    }
+    #no-sel { font-size: .82rem; color: var(--text-dim); padding: 6px 0; }
+    .val-display { font-size: .8rem; color: var(--accent2); margin-top: 2px; }
 
     /* ── MAIN ── */
-    #main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+    #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-    /* Toolbar */
     #toolbar {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 8px 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
-    #toolbar .sep {
-      width: 1px; height: 22px;
-      background: var(--border);
-      margin: 0 4px;
-    }
-    #zoom-label {
-      font-size: 0.82rem;
-      min-width: 46px;
-      text-align: center;
-    }
-    #toolbar-hint {
-      margin-left: auto;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
+    #toolbar .sep { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+    #zoom-label { font-size: .82rem; min-width: 46px; text-align: center; }
+    #toolbar-hint { margin-left: auto; font-size: .75rem; color: var(--text-dim); }
 
-    /* Canvas container */
-    #canvas-wrap {
-      flex: 1;
-      overflow: auto;
-      background: #0c0c18;
-      position: relative;
-      cursor: default;
-    }
-
-    #ballroom-svg {
-      display: block;
-      user-select: none;
-    }
-
-    /* SVG element classes */
+    #canvas-wrap { flex: 1; overflow: auto; background: #0c0c18; position: relative; cursor: default; }
+    #ballroom-svg { display: block; user-select: none; }
     .tbl-group { cursor: grab; }
     .tbl-group:active { cursor: grabbing; }
 
-    /* Status bar */
     #statusbar {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 5px 16px;
-      display: flex;
-      gap: 20px;
-      font-size: 0.75rem;
-      color: var(--text-dim);
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 5px 16px; display: flex; gap: 20px;
+      font-size: .75rem; color: var(--text-dim);
     }
     #statusbar span { color: var(--text); font-weight: 600; }
 
-    /* Scrollbars */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-    /* Tooltip hint */
-    .hint { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; }
-
-    /* ── MOBILE ── */
-    #menu-btn { display: none; }
-    #sidebar-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 199;
-    }
-    #sidebar-backdrop.visible { display: block; }
+    /* ══════════════════════════════════════
+       MOBILE UI  (hidden on desktop)
+    ══════════════════════════════════════ */
+    #mob-topbar, #mob-bottom, #mob-sheet, #mob-room-modal { display: none; }
 
     @media (max-width: 768px) {
-      #menu-btn {
+      /* Hide desktop chrome */
+      #sidebar  { display: none !important; }
+      #toolbar  { display: none !important; }
+      #statusbar{ display: none !important; }
+
+      body   { display: block; overflow: hidden; height: 100dvh; }
+      #main  { height: 100dvh; position: relative; }
+      #canvas-wrap {
+        position: absolute;
+        top: 52px; bottom: 72px; left: 0; right: 0;
+        height: auto; overflow: auto;
+      }
+
+      /* ── Top bar ── */
+      #mob-topbar {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 38px;
-        height: 34px;
-        font-size: 1.15rem;
-        flex-shrink: 0;
-      }
-      #sidebar {
         position: fixed;
-        top: 0; left: -280px;
-        height: 100%;
-        z-index: 200;
-        transition: left 0.25s ease;
-        box-shadow: 4px 0 24px rgba(0,0,0,0.6);
+        top: 0; left: 0; right: 0; height: 52px;
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        align-items: center; padding: 0 10px; gap: 6px; z-index: 100;
       }
-      #sidebar.open { left: 0; }
-      #toolbar-hint { display: none; }
-      #toolbar { flex-wrap: nowrap; overflow-x: auto; gap: 6px; }
-      .btn { padding: 8px 12px; font-size: 0.8rem; }
-      #statusbar { flex-wrap: wrap; gap: 8px; }
+      #mob-room-btn {
+        background: var(--bg); border: 1px solid var(--border);
+        color: var(--text); border-radius: 8px;
+        padding: 0 12px; height: 36px;
+        font-size: .82rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+        display: flex; align-items: center; gap: 5px;
+      }
+      #mob-topbar .spacer { flex: 1; }
+      .mob-top-btn {
+        width: 36px; height: 36px;
+        background: var(--bg); border: 1px solid var(--border);
+        color: var(--text); border-radius: 8px;
+        font-size: .82rem; font-weight: 700; cursor: pointer;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      }
+      .mob-top-btn.on { border-color: var(--accent2); color: var(--accent2); }
+      #mob-zoom-lbl { font-size: .78rem; color: var(--text-dim); min-width: 38px; text-align: center; }
+
+      /* ── Stats strip (inside topbar) ── */
+      #mob-stats {
+        font-size: .72rem; color: var(--text-dim);
+        white-space: nowrap; margin-left: 2px;
+      }
+      #mob-stats b { color: var(--text); }
+
+      /* ── Bottom bar ── */
+      #mob-bottom {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0; height: 72px;
+        background: var(--surface); border-top: 1px solid var(--border);
+        align-items: center; padding: 0 10px; gap: 6px; z-index: 100;
+      }
+      .mob-type-btn {
+        flex: 1; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 3px;
+        height: 56px; padding: 4px;
+        border-radius: 10px; border: 2px solid transparent;
+        background: var(--bg); color: var(--text-dim);
+        font-size: .65rem; font-weight: 600; cursor: pointer;
+        transition: border-color .15s, color .15s, background .15s;
+      }
+      .mob-type-btn.active {
+        border-color: var(--accent); color: var(--accent);
+        background: rgba(224,83,74,.1);
+      }
+      #mob-auto-btn {
+        width: 42px; height: 42px; flex-shrink: 0;
+        background: var(--surface2); border: 1px solid var(--border);
+        color: var(--text-dim); border-radius: 10px;
+        font-size: 1.1rem; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+      #mob-fab {
+        width: 56px; height: 56px; flex-shrink: 0;
+        background: var(--accent); color: #fff; border: none;
+        border-radius: 50%; font-size: 2rem; font-weight: 300;
+        cursor: pointer; margin-left: 2px;
+        box-shadow: 0 4px 16px rgba(224,83,74,.55);
+        display: flex; align-items: center; justify-content: center;
+        transition: transform .1s;
+      }
+      #mob-fab:active { transform: scale(.92); }
+
+      /* ── Bottom sheet ── */
+      #mob-sheet {
+        display: block;
+        position: fixed;
+        bottom: 72px; left: 0; right: 0;
+        background: var(--surface);
+        border-top: 2px solid var(--border);
+        border-radius: 18px 18px 0 0;
+        transform: translateY(105%);
+        transition: transform .32s cubic-bezier(.32,1,.4,1);
+        z-index: 160;
+        max-height: 74vh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+      #mob-sheet.open { transform: translateY(0); }
+
+      .mob-handle-wrap {
+        display: flex; justify-content: center;
+        padding: 10px 0 4px; cursor: pointer;
+      }
+      .mob-handle {
+        width: 40px; height: 4px;
+        background: var(--border); border-radius: 2px;
+      }
+      .mob-sheet-inner { padding: 4px 16px 28px; }
+
+      /* Sheet title row */
+      .mob-title-row {
+        display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+      }
+      .mob-title-row input[type="text"] {
+        flex: 1; background: var(--bg); border: 1px solid var(--border);
+        border-radius: 10px; color: var(--text);
+        font-size: 1rem; font-weight: 600; padding: 10px 14px;
+        outline: none; height: 46px;
+      }
+      .mob-title-row input:focus { border-color: var(--accent2); }
+      .mob-close-btn {
+        width: 42px; height: 42px; flex-shrink: 0;
+        border-radius: 50%; background: var(--surface2);
+        border: 1px solid var(--border); color: var(--text-dim);
+        font-size: 1.1rem; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+
+      /* Stepper rows */
+      .mob-stepper {
+        display: flex; align-items: center;
+        background: var(--bg); border-radius: 12px;
+        padding: 10px 12px; margin-bottom: 10px; gap: 8px;
+      }
+      .mob-step-label { flex: 1; font-size: .88rem; color: var(--text-dim); }
+      .mob-step-val {
+        font-size: 1.05rem; font-weight: 700; color: var(--text);
+        min-width: 58px; text-align: center;
+      }
+      .mob-step-btn {
+        width: 42px; height: 42px; flex-shrink: 0;
+        border-radius: 10px; background: var(--surface2);
+        border: 1px solid var(--border); color: var(--text);
+        font-size: 1.4rem; font-weight: 300; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background .1s;
+      }
+      .mob-step-btn:active { background: var(--border); }
+
+      /* Color row */
+      .mob-section-label {
+        font-size: .7rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 1px; color: var(--text-dim); margin: 14px 0 8px;
+      }
+      #mob-color-row {
+        display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;
+      }
+      #mob-color-row .swatch {
+        width: 34px; height: 34px; border-radius: 8px;
+        border: 3px solid transparent;
+      }
+      #mob-color-row .swatch.active { border-color: #fff; }
+
+      /* Rotation row */
+      .mob-rot-row {
+        display: flex; align-items: center; gap: 10px;
+        background: var(--bg); border-radius: 12px;
+        padding: 10px 14px; margin-bottom: 14px;
+      }
+      .mob-rot-row .mob-step-label { flex-shrink: 0; }
+      .mob-rot-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+      #mob-rot-val {
+        font-size: .88rem; font-weight: 700; color: var(--accent2);
+        min-width: 38px; text-align: right;
+      }
+
+      /* Action row */
+      .mob-action-row { display: flex; gap: 8px; }
+      .mob-action-row .btn {
+        flex: 1; padding: 13px 6px; font-size: .84rem; font-weight: 700;
+      }
+
+      /* ── Room modal ── */
+      #mob-room-modal {
+        display: none;
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.6);
+        z-index: 250; align-items: flex-end;
+      }
+      #mob-room-modal.open { display: flex; }
+      #mob-room-card {
+        background: var(--surface);
+        border-radius: 18px 18px 0 0;
+        border-top: 2px solid var(--border);
+        width: 100%; padding: 20px 16px 40px;
+      }
+      #mob-room-card h3 {
+        font-size: 1rem; font-weight: 700;
+        text-align: center; margin-bottom: 16px;
+      }
+      .mob-room-btns { display: flex; gap: 8px; margin-top: 18px; }
+      .mob-room-btns .btn { flex: 1; padding: 13px; font-size: .9rem; }
     }
   </style>
 </head>
 <body>
 
-<div id="sidebar-backdrop" onclick="closeSidebar()"></div>
+<!-- ════════ MOBILE TOP BAR ════════ -->
+<div id="mob-topbar">
+  <button id="mob-room-btn" onclick="showMobRoom()">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="1" y="1" width="14" height="14" rx="2"/>
+    </svg>
+    <span id="mob-room-lbl">60 × 80 ft</span>
+  </button>
+  <div class="spacer"></div>
+  <span id="mob-stats"><b id="mob-st-tables">0</b> tables &middot; <b id="mob-st-seats">0</b> seats</span>
+  <div class="spacer"></div>
+  <button class="mob-top-btn" onclick="zoom(-0.15)" title="Zoom out">&#8722;</button>
+  <span id="mob-zoom-lbl">100%</span>
+  <button class="mob-top-btn" onclick="zoom(+0.15)" title="Zoom in">&#43;</button>
+  <button class="mob-top-btn" onclick="fitZoom()" title="Fit">&#8689;</button>
+  <button class="mob-top-btn on" id="mob-grid-btn" onclick="mobToggleGrid()" title="Grid">&#9783;</button>
+</div>
 
-<!-- ════════════════ SIDEBAR ════════════════ -->
+<!-- ════════ MAIN ════════ -->
+<div id="main">
+
+  <div id="toolbar">
+    <button class="btn btn-secondary" onclick="zoom(-0.15)" title="Zoom out">&#8722;</button>
+    <span id="zoom-label">100%</span>
+    <button class="btn btn-secondary" onclick="zoom(+0.15)" title="Zoom in">&#43;</button>
+    <button class="btn btn-secondary" onclick="fitZoom()">Fit</button>
+    <div class="sep"></div>
+    <button class="btn btn-secondary" id="grid-btn" onclick="toggleGrid()">Grid: ON</button>
+    <button class="btn btn-secondary" id="snap-btn" onclick="toggleSnap()">Snap: ON</button>
+    <button class="btn btn-secondary" id="label-btn" onclick="toggleLabels()">Labels: ON</button>
+    <span id="toolbar-hint">Drag tables &bull; Scroll to zoom &bull; Del to remove</span>
+  </div>
+
+  <div id="canvas-wrap">
+    <svg id="ballroom-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <div id="statusbar">
+    Tables: <span id="st-tables">0</span>
+    &nbsp;&nbsp;Total Seats: <span id="st-seats">0</span>
+    &nbsp;&nbsp;Room: <span id="st-room">60 &times; 80 ft</span>
+    &nbsp;&nbsp;Floor Used: <span id="st-used">0%</span>
+  </div>
+
+</div>
+
+<!-- ════════ SIDEBAR (desktop) ════════ -->
 <aside id="sidebar">
   <div id="sidebar-header">
     <h1>&#127963; Ballroom Designer</h1>
     <p>Drag tables &bull; Click to edit &bull; Delete key to remove</p>
   </div>
-
   <div id="sidebar-body">
 
-    <!-- Room dimensions -->
     <div class="section">
       <div class="section-title">Room Dimensions</div>
       <div class="row">
@@ -321,10 +413,8 @@
       <button class="btn btn-secondary btn-full" style="margin-top:8px" onclick="applyRoom()">Apply Room Size</button>
     </div>
 
-    <!-- Add table -->
     <div class="section">
       <div class="section-title">Add Table</div>
-
       <div class="type-grid">
         <div class="type-card active" id="tc-round" onclick="pickType('round')">
           <svg width="32" height="32" viewBox="0 0 32 32">
@@ -342,7 +432,6 @@
           </svg>Banquet
         </div>
       </div>
-
       <div class="row">
         <div>
           <label>Chairs</label>
@@ -356,16 +445,12 @@
       <button class="btn btn-primary btn-full" style="margin-top:10px" onclick="addTable()">+ Add Table</button>
     </div>
 
-    <!-- Selected table -->
     <div class="section">
       <div class="section-title">Selected Table</div>
-
       <div id="no-sel">Click a table to edit it</div>
-
       <div id="sel-panel">
         <label>Name / Label</label>
         <input type="text" id="s-name" oninput="pushEdit()" />
-
         <div class="row">
           <div>
             <label>Chairs</label>
@@ -376,14 +461,11 @@
             <input type="number" id="s-size" min="2" max="30" step="0.5" oninput="pushEdit()" />
           </div>
         </div>
-
         <label>Rotation</label>
         <input type="range" id="s-rot" min="0" max="359" value="0" oninput="pushEdit()" />
         <div class="val-display" id="rot-val">0°</div>
-
         <label>Table Color</label>
         <div class="swatch-row" id="swatch-row"></div>
-
         <div class="row" style="margin-top:12px">
           <button class="btn btn-danger" onclick="deleteSelected()">Delete</button>
           <button class="btn btn-secondary" onclick="duplicateSelected()">Duplicate</button>
@@ -391,7 +473,6 @@
       </div>
     </div>
 
-    <!-- Actions -->
     <div class="section">
       <div class="section-title">Actions</div>
       <div class="row">
@@ -404,36 +485,98 @@
   </div>
 </aside>
 
-<!-- ════════════════ MAIN ════════════════ -->
-<div id="main">
+<!-- ════════ MOBILE BOTTOM BAR ════════ -->
+<div id="mob-bottom">
+  <button class="mob-type-btn active" id="mbt-round" onclick="pickTypeM('round')">
+    <svg width="26" height="26" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </svg>
+    Round
+  </button>
+  <button class="mob-type-btn" id="mbt-rect" onclick="pickTypeM('rect')">
+    <svg width="26" height="26" viewBox="0 0 32 32">
+      <rect x="3" y="9" width="26" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </svg>
+    Square
+  </button>
+  <button class="mob-type-btn" id="mbt-long" onclick="pickTypeM('long')">
+    <svg width="26" height="26" viewBox="0 0 32 32">
+      <rect x="1" y="11" width="30" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    </svg>
+    Banquet
+  </button>
+  <button id="mob-auto-btn" onclick="autoLayout()" title="Auto layout">&#8645;</button>
+  <button id="mob-fab" onclick="addTable()">+</button>
+</div>
 
-  <div id="toolbar">
-    <button class="btn btn-secondary" id="menu-btn" onclick="toggleSidebar()" title="Menu">&#9776;</button>
-    <button class="btn btn-secondary" onclick="zoom(-0.15)" title="Zoom out">&#8722;</button>
-    <span id="zoom-label">100%</span>
-    <button class="btn btn-secondary" onclick="zoom(+0.15)" title="Zoom in">&#43;</button>
-    <button class="btn btn-secondary" onclick="fitZoom()">Fit</button>
-
-    <div class="sep"></div>
-
-    <button class="btn btn-secondary" id="grid-btn" onclick="toggleGrid()">Grid: ON</button>
-    <button class="btn btn-secondary" id="snap-btn" onclick="toggleSnap()">Snap: ON</button>
-    <button class="btn btn-secondary" id="label-btn" onclick="toggleLabels()">Labels: ON</button>
-
-    <span id="toolbar-hint">Drag tables to reposition &bull; Scroll to zoom &bull; Del to remove selected</span>
+<!-- ════════ MOBILE BOTTOM SHEET ════════ -->
+<div id="mob-sheet">
+  <div class="mob-handle-wrap" id="mob-handle" onclick="">
+    <div class="mob-handle"></div>
   </div>
+  <div class="mob-sheet-inner">
 
-  <div id="canvas-wrap">
-    <svg id="ballroom-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="mob-title-row">
+      <input type="text" id="mob-name" placeholder="Table name" oninput="pushMobEdit()" />
+      <button class="mob-close-btn" onclick="dismissSheet()">&#10005;</button>
+    </div>
+
+    <div class="mob-stepper">
+      <span class="mob-step-label">Chairs</span>
+      <button class="mob-step-btn" onclick="adjustProp('chairs',-1)">&#8722;</button>
+      <span class="mob-step-val" id="mob-chairs-val">8</span>
+      <button class="mob-step-btn" onclick="adjustProp('chairs',1)">+</button>
+    </div>
+
+    <div class="mob-stepper">
+      <span class="mob-step-label">Size (ft)</span>
+      <button class="mob-step-btn" onclick="adjustProp('size',-.5)">&#8722;</button>
+      <span class="mob-step-val" id="mob-size-val">5</span>
+      <button class="mob-step-btn" onclick="adjustProp('size',.5)">+</button>
+    </div>
+
+    <div class="mob-section-label">Color</div>
+    <div id="mob-color-row"></div>
+
+    <div class="mob-rot-row" style="margin-top:14px">
+      <span class="mob-step-label">Rotate</span>
+      <input type="range" id="mob-rot" min="0" max="359" value="0" oninput="pushMobEdit()" />
+      <span id="mob-rot-val">0°</span>
+    </div>
+
+    <div class="mob-action-row">
+      <button class="btn btn-danger"    onclick="deleteSelected()">Delete</button>
+      <button class="btn btn-secondary" onclick="duplicateSelected()">Duplicate</button>
+      <button class="btn btn-blue"      onclick="exportPNG()">Export</button>
+    </div>
+
   </div>
+</div>
 
-  <div id="statusbar">
-    Tables: <span id="st-tables">0</span>
-    &nbsp;&nbsp;Total Seats: <span id="st-seats">0</span>
-    &nbsp;&nbsp;Room: <span id="st-room">60 &times; 80 ft</span>
-    &nbsp;&nbsp;Floor Used: <span id="st-used">0%</span>
+<!-- ════════ MOBILE ROOM MODAL ════════ -->
+<div id="mob-room-modal" onclick="e => e.target===this && hideMobRoom()">
+  <div id="mob-room-card">
+    <h3>&#127963; Room Size</h3>
+
+    <div class="mob-stepper">
+      <span class="mob-step-label">Width (ft)</span>
+      <button class="mob-step-btn" onclick="adjustRoom('w',-5)">&#8722;</button>
+      <span class="mob-step-val" id="mob-rw-val">60</span>
+      <button class="mob-step-btn" onclick="adjustRoom('w',5)">+</button>
+    </div>
+
+    <div class="mob-stepper">
+      <span class="mob-step-label">Length (ft)</span>
+      <button class="mob-step-btn" onclick="adjustRoom('h',-5)">&#8722;</button>
+      <span class="mob-step-val" id="mob-rl-val">80</span>
+      <button class="mob-step-btn" onclick="adjustRoom('h',5)">+</button>
+    </div>
+
+    <div class="mob-room-btns">
+      <button class="btn btn-secondary" onclick="hideMobRoom()">Cancel</button>
+      <button class="btn btn-primary"   onclick="applyMobRoom()">Apply</button>
+    </div>
   </div>
-
 </div>
 
 <script>
@@ -441,37 +584,41 @@
 //  STATE
 // ══════════════════════════════════════════
 const S = {
-  room:     { w: 60, h: 80 },
-  tables:   [],
-  selId:    null,
-  zoom:     1,
-  grid:     true,
-  snap:     true,
-  labels:   true,
-  nextId:   1,
-  addType:  'round',
-  PX:       10,      // pixels per foot (base scale)
-  PAD:      50,      // canvas padding px
+  room:    { w: 60, h: 80 },
+  tables:  [],
+  selId:   null,
+  zoom:    1,
+  grid:    true,
+  snap:    true,
+  labels:  true,
+  nextId:  1,
+  addType: 'round',
+  PX:      10,
+  PAD:     50,
+  mobRoomW: 60,
+  mobRoomH: 80,
 };
-
-const SNAP_FT = 0.5; // snap grid size in feet
-
+const SNAP_FT = 0.5;
 const COLORS = [
-  { hex: '#c8a96e', name: 'Oak'      },
-  { hex: '#7eb8d4', name: 'Sky'      },
-  { hex: '#8ec98a', name: 'Sage'     },
-  { hex: '#c98a8a', name: 'Rose'     },
-  { hex: '#a48ac9', name: 'Lavender' },
-  { hex: '#c9c27e', name: 'Gold'     },
-  { hex: '#7ec9b8', name: 'Teal'     },
+  { hex: '#c8a96e', name: 'Oak'       },
+  { hex: '#7eb8d4', name: 'Sky'       },
+  { hex: '#8ec98a', name: 'Sage'      },
+  { hex: '#c98a8a', name: 'Rose'      },
+  { hex: '#a48ac9', name: 'Lavender'  },
+  { hex: '#c9c27e', name: 'Gold'      },
+  { hex: '#7ec9b8', name: 'Teal'      },
   { hex: '#c9a07e', name: 'Terracotta'},
 ];
+
+const isMobile = () => window.innerWidth <= 768;
 
 // ══════════════════════════════════════════
 //  BOOT
 // ══════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
   buildSwatches();
+  buildMobColors();
+  setupSheetSwipe();
   rebuild();
   fitZoom();
 });
@@ -490,6 +637,7 @@ function buildSwatches() {
         t.color = c.hex;
         row.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
         div.classList.add('active');
+        syncMobColors(c.hex);
         rebuild();
       }
     });
@@ -497,21 +645,51 @@ function buildSwatches() {
   });
 }
 
+function buildMobColors() {
+  const row = document.getElementById('mob-color-row');
+  COLORS.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'swatch' + (i === 0 ? ' active' : '');
+    div.style.background = c.hex;
+    div.title = c.name;
+    div.dataset.hex = c.hex;
+    div.addEventListener('click', () => {
+      const t = getSelected();
+      if (t) {
+        t.color = c.hex;
+        row.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+        div.classList.add('active');
+        // sync desktop swatches
+        document.querySelectorAll('#swatch-row .swatch').forEach(s =>
+          s.classList.toggle('active', s.dataset.hex === c.hex)
+        );
+        rebuild();
+      }
+    });
+    row.appendChild(div);
+  });
+}
+
+function syncMobColors(hex) {
+  document.querySelectorAll('#mob-color-row .swatch').forEach(s =>
+    s.classList.toggle('active', s.dataset.hex === hex)
+  );
+}
+
 // ══════════════════════════════════════════
 //  SVG REBUILD
 // ══════════════════════════════════════════
 function rebuild() {
-  const svg   = document.getElementById('ballroom-svg');
-  const rw    = S.room.w * S.PX;
-  const rh    = S.room.h * S.PX;
-  const W     = rw + S.PAD * 2;
-  const H     = rh + S.PAD * 2;
+  const svg = document.getElementById('ballroom-svg');
+  const rw  = S.room.w * S.PX;
+  const rh  = S.room.h * S.PX;
+  const W   = rw + S.PAD * 2;
+  const H   = rh + S.PAD * 2;
 
   svg.setAttribute('width',   W * S.zoom);
   svg.setAttribute('height',  H * S.zoom);
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 
-  // ─ defs ─
   svg.innerHTML = `
 <defs>
   <pattern id="floor-pat" patternUnits="userSpaceOnUse" width="40" height="40">
@@ -520,7 +698,7 @@ function rebuild() {
     <rect x="20" y="20" width="20" height="20" fill="#f0ead8"/>
   </pattern>
   <pattern id="grid-pat" patternUnits="userSpaceOnUse"
-           width="${S.PX * SNAP_FT * 2}" height="${S.PX * SNAP_FT * 2}">
+           width="${S.PX*SNAP_FT*2}" height="${S.PX*SNAP_FT*2}">
     <path d="M ${S.PX*SNAP_FT*2} 0 L 0 0 0 ${S.PX*SNAP_FT*2}"
           fill="none" stroke="rgba(120,140,200,0.12)" stroke-width="0.7"/>
   </pattern>
@@ -528,42 +706,18 @@ function rebuild() {
     <feDropShadow dx="2" dy="3" stdDeviation="3.5" flood-opacity="0.35"/>
   </filter>
   <filter id="f-glow">
-    <feDropShadow dx="0" dy="0" stdDeviation="7"
-                  flood-color="#e0534a" flood-opacity="0.85"/>
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#e0534a" flood-opacity="0.85"/>
   </filter>
 </defs>
+<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}" fill="url(#floor-pat)" rx="5"/>
+${S.grid ? `<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}" fill="url(#grid-pat)" rx="5" pointer-events="none"/>` : ''}
+<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}" fill="none" stroke="#8b7355" stroke-width="3" rx="5"/>
+<text x="${S.PAD+rw/2}" y="${S.PAD-14}" text-anchor="middle" fill="#7a7fa8" font-size="13" font-family="'Segoe UI',sans-serif">${S.room.w} ft</text>
+<text x="${S.PAD-14}" y="${S.PAD+rh/2}" text-anchor="middle" fill="#7a7fa8" font-size="13" font-family="'Segoe UI',sans-serif" transform="rotate(-90 ${S.PAD-14} ${S.PAD+rh/2})">${S.room.h} ft</text>
+<g id="tbl-layer"></g>`;
 
-<!-- room floor -->
-<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}"
-      fill="url(#floor-pat)" rx="5"/>
-
-<!-- grid overlay -->
-${S.grid ? `<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}"
-      fill="url(#grid-pat)" rx="5" pointer-events="none"/>` : ''}
-
-<!-- room border -->
-<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}"
-      fill="none" stroke="#8b7355" stroke-width="3" rx="5"/>
-
-<!-- room dimension labels -->
-<text x="${S.PAD + rw/2}" y="${S.PAD - 14}"
-      text-anchor="middle" fill="#7a7fa8" font-size="13" font-family="'Segoe UI',sans-serif">
-  ${S.room.w} ft
-</text>
-<text x="${S.PAD - 14}" y="${S.PAD + rh/2}"
-      text-anchor="middle" fill="#7a7fa8" font-size="13" font-family="'Segoe UI',sans-serif"
-      transform="rotate(-90 ${S.PAD - 14} ${S.PAD + rh/2})">
-  ${S.room.h} ft
-</text>
-
-<!-- tables layer -->
-<g id="tbl-layer"></g>
-`;
-
-  // draw tables
   const layer = svg.getElementById('tbl-layer');
   S.tables.forEach(t => layer.appendChild(makeTableEl(t)));
-
   updateStats();
 }
 
@@ -571,8 +725,8 @@ ${S.grid ? `<rect x="${S.PAD}" y="${S.PAD}" width="${rw}" height="${rh}"
 //  TABLE ELEMENT BUILDER
 // ══════════════════════════════════════════
 function makeTableEl(t) {
-  const px = t.x * S.PX + S.PAD;
-  const py = t.y * S.PX + S.PAD;
+  const px  = t.x * S.PX + S.PAD;
+  const py  = t.y * S.PX + S.PAD;
   const sel = t.id === S.selId;
 
   const g = svgEl('g');
@@ -582,72 +736,59 @@ function makeTableEl(t) {
   g.setAttribute('filter', sel ? 'url(#f-glow)' : 'url(#f-shadow)');
 
   let tableNode, chairs;
-
   if (t.type === 'round') {
-    const r = (t.size / 2) * S.PX;
+    const r = (t.size/2)*S.PX;
     tableNode = drawCircleTable(r, t.color, sel);
-    chairs    = circleChairs(t.chairs, r + 9);
+    chairs    = circleChairs(t.chairs, r+9);
   } else if (t.type === 'rect') {
-    const w = t.size * S.PX;
-    const h = t.size * 0.65 * S.PX;
+    const w = t.size*S.PX, h = t.size*0.65*S.PX;
     tableNode = drawRectTable(w, h, t.color, sel);
     chairs    = rectChairs(t.chairs, w, h);
-  } else { // banquet / long
-    const w = t.size * S.PX * 1.6;
-    const h = t.size * S.PX * 0.38;
+  } else {
+    const w = t.size*S.PX*1.6, h = t.size*S.PX*0.38;
     tableNode = drawRectTable(w, h, t.color, sel);
     chairs    = rectChairs(t.chairs, w, h);
   }
 
-  // chairs behind table surface
   chairs.forEach(c => g.appendChild(c));
   g.appendChild(tableNode);
 
-  // labels
   if (S.labels) {
     const lbl = svgEl('text');
-    lbl.setAttribute('x', 0); lbl.setAttribute('y', 5);
-    lbl.setAttribute('text-anchor', 'middle');
-    lbl.setAttribute('font-size', '11');
-    lbl.setAttribute('font-family', "'Segoe UI',sans-serif");
-    lbl.setAttribute('fill', '#3a3020');
-    lbl.setAttribute('font-weight', '700');
-    lbl.setAttribute('pointer-events', 'none');
+    lbl.setAttribute('x',0); lbl.setAttribute('y',5);
+    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('font-size','11');
+    lbl.setAttribute('font-family',"'Segoe UI',sans-serif"); lbl.setAttribute('fill','#3a3020');
+    lbl.setAttribute('font-weight','700'); lbl.setAttribute('pointer-events','none');
     lbl.textContent = t.name || `T${t.id}`;
     g.appendChild(lbl);
-
     const sub = svgEl('text');
-    sub.setAttribute('x', 0); sub.setAttribute('y', 17);
-    sub.setAttribute('text-anchor', 'middle');
-    sub.setAttribute('font-size', '9');
-    sub.setAttribute('font-family', "'Segoe UI',sans-serif");
-    sub.setAttribute('fill', '#6a5840');
-    sub.setAttribute('pointer-events', 'none');
+    sub.setAttribute('x',0); sub.setAttribute('y',17);
+    sub.setAttribute('text-anchor','middle'); sub.setAttribute('font-size','9');
+    sub.setAttribute('font-family',"'Segoe UI',sans-serif"); sub.setAttribute('fill','#6a5840');
+    sub.setAttribute('pointer-events','none');
     sub.textContent = `${t.chairs} seats`;
     g.appendChild(sub);
   }
 
   attachDrag(g, t);
   g.addEventListener('click', e => { e.stopPropagation(); selectTable(t.id); });
-
   return g;
 }
 
 function drawCircleTable(r, color, sel) {
   const c = svgEl('circle');
-  c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', r);
+  c.setAttribute('cx',0); c.setAttribute('cy',0); c.setAttribute('r',r);
   c.setAttribute('fill', color);
-  c.setAttribute('stroke', darken(color, 0.68));
+  c.setAttribute('stroke', sel ? '#e0534a' : darken(color, 0.68));
   c.setAttribute('stroke-width', sel ? '3' : '2');
-  if (sel) c.setAttribute('stroke', '#e0534a');
   return c;
 }
 
 function drawRectTable(w, h, color, sel) {
   const r = svgEl('rect');
-  r.setAttribute('x', -w/2); r.setAttribute('y', -h/2);
-  r.setAttribute('width', w); r.setAttribute('height', h);
-  r.setAttribute('rx', 4); r.setAttribute('ry', 4);
+  r.setAttribute('x',-w/2); r.setAttribute('y',-h/2);
+  r.setAttribute('width',w); r.setAttribute('height',h);
+  r.setAttribute('rx',4); r.setAttribute('ry',4);
   r.setAttribute('fill', color);
   r.setAttribute('stroke', sel ? '#e0534a' : darken(color, 0.68));
   r.setAttribute('stroke-width', sel ? '3' : '2');
@@ -657,71 +798,46 @@ function drawRectTable(w, h, color, sel) {
 function circleChairs(count, radius) {
   const els = [];
   for (let i = 0; i < count; i++) {
-    const a = (i / count) * Math.PI * 2 - Math.PI / 2;
-    const cx = Math.cos(a) * radius;
-    const cy = Math.sin(a) * radius;
-    const deg = a * 180 / Math.PI + 90;
-    els.push(chairEl(cx, cy, deg));
+    const a = (i/count)*Math.PI*2 - Math.PI/2;
+    els.push(chairEl(Math.cos(a)*radius, Math.sin(a)*radius, a*180/Math.PI+90));
   }
   return els;
 }
 
 function rectChairs(count, w, h) {
   const els = [];
-  if (count === 0) return els;
-
-  // distribute around perimeter proportionally
-  const perim = 2 * (w + h);
-  const topN   = Math.max(1, Math.round(count * w / perim));
-  const botN   = Math.max(1, Math.round(count * w / perim));
-  const leftN  = Math.round((count - topN - botN) / 2);
-  const rightN = count - topN - botN - leftN;
-
-  for (let i = 0; i < topN; i++) {
-    const x = -w/2 + (i + 0.5) * (w / topN);
-    els.push(chairEl(x, -h/2 - 11, 0));
-  }
-  for (let i = 0; i < botN; i++) {
-    const x = -w/2 + (i + 0.5) * (w / botN);
-    els.push(chairEl(x, h/2 + 11, 180));
-  }
-  for (let i = 0; i < leftN; i++) {
-    const y = -h/2 + (i + 0.5) * (h / Math.max(1, leftN));
-    els.push(chairEl(-w/2 - 11, y, -90));
-  }
-  for (let i = 0; i < rightN; i++) {
-    const y = -h/2 + (i + 0.5) * (h / Math.max(1, rightN));
-    els.push(chairEl(w/2 + 11, y, 90));
-  }
+  if (!count) return els;
+  const perim = 2*(w+h);
+  const topN  = Math.max(1, Math.round(count*w/perim));
+  const botN  = Math.max(1, Math.round(count*w/perim));
+  const leftN = Math.round((count-topN-botN)/2);
+  const rightN= count-topN-botN-leftN;
+  for (let i=0;i<topN;i++)  els.push(chairEl(-w/2+(i+.5)*(w/topN),  -h/2-11,  0));
+  for (let i=0;i<botN;i++)  els.push(chairEl(-w/2+(i+.5)*(w/botN),   h/2+11,180));
+  for (let i=0;i<leftN;i++) els.push(chairEl(-w/2-11, -h/2+(i+.5)*(h/Math.max(1,leftN)), -90));
+  for (let i=0;i<rightN;i++)els.push(chairEl( w/2+11, -h/2+(i+.5)*(h/Math.max(1,rightN)), 90));
   return els.slice(0, count);
 }
 
 function chairEl(cx, cy, angleDeg) {
   const g = svgEl('g');
   g.setAttribute('transform', `translate(${cx},${cy}) rotate(${angleDeg})`);
-  g.setAttribute('pointer-events', 'none');
+  g.setAttribute('pointer-events','none');
   const seat = svgEl('rect');
-  seat.setAttribute('x', -5.5); seat.setAttribute('y', -4.5);
-  seat.setAttribute('width', 11); seat.setAttribute('height', 9);
-  seat.setAttribute('rx', 2.5);
-  seat.setAttribute('fill', '#9b8460');
-  seat.setAttribute('stroke', '#7a6240');
-  seat.setAttribute('stroke-width', '1');
+  seat.setAttribute('x',-5.5); seat.setAttribute('y',-4.5);
+  seat.setAttribute('width',11); seat.setAttribute('height',9); seat.setAttribute('rx',2.5);
+  seat.setAttribute('fill','#9b8460'); seat.setAttribute('stroke','#7a6240'); seat.setAttribute('stroke-width','1');
   g.appendChild(seat);
-  // back
   const back = svgEl('rect');
-  back.setAttribute('x', -5.5); back.setAttribute('y', -7.5);
-  back.setAttribute('width', 11); back.setAttribute('height', 4);
-  back.setAttribute('rx', 1.5);
-  back.setAttribute('fill', '#b09070');
-  back.setAttribute('stroke', '#7a6240');
-  back.setAttribute('stroke-width', '1');
+  back.setAttribute('x',-5.5); back.setAttribute('y',-7.5);
+  back.setAttribute('width',11); back.setAttribute('height',4); back.setAttribute('rx',1.5);
+  back.setAttribute('fill','#b09070'); back.setAttribute('stroke','#7a6240'); back.setAttribute('stroke-width','1');
   g.appendChild(back);
   return g;
 }
 
 // ══════════════════════════════════════════
-//  DRAG
+//  DRAG (mouse + touch)
 // ══════════════════════════════════════════
 function attachDrag(el, table) {
   let ox, oy, otx, oty, dragging = false;
@@ -730,32 +846,20 @@ function attachDrag(el, table) {
   function startDrag(cx, cy) {
     dragging = true;
     const p = svgPtFromXY(cx, cy, svg);
-    ox = p.x; oy = p.y;
-    otx = table.x; oty = table.y;
+    ox = p.x; oy = p.y; otx = table.x; oty = table.y;
   }
-
   function moveDrag(cx, cy) {
     if (!dragging) return;
     const p2 = svgPtFromXY(cx, cy, svg);
-    let nx = otx + (p2.x - ox) / S.PX;
-    let ny = oty + (p2.y - oy) / S.PX;
-    if (S.snap) {
-      nx = Math.round(nx / SNAP_FT) * SNAP_FT;
-      ny = Math.round(ny / SNAP_FT) * SNAP_FT;
-    }
-    const margin = tableMargin(table);
-    table.x = clamp(nx, margin, S.room.w - margin);
-    table.y = clamp(ny, margin, S.room.h - margin);
-    const px = table.x * S.PX + S.PAD;
-    const py = table.y * S.PX + S.PAD;
-    el.setAttribute('transform', `translate(${px},${py}) rotate(${table.rot})`);
+    let nx = otx + (p2.x-ox)/S.PX;
+    let ny = oty + (p2.y-oy)/S.PX;
+    if (S.snap) { nx = Math.round(nx/SNAP_FT)*SNAP_FT; ny = Math.round(ny/SNAP_FT)*SNAP_FT; }
+    const m = tableMargin(table);
+    table.x = clamp(nx, m, S.room.w-m);
+    table.y = clamp(ny, m, S.room.h-m);
+    el.setAttribute('transform', `translate(${table.x*S.PX+S.PAD},${table.y*S.PX+S.PAD}) rotate(${table.rot})`);
   }
-
-  function endDrag() {
-    dragging = false;
-    el.style.cursor = 'grab';
-    updateStats();
-  }
+  function endDrag() { dragging = false; el.style.cursor='grab'; updateStats(); }
 
   // Mouse
   el.addEventListener('mousedown', e => {
@@ -764,11 +868,7 @@ function attachDrag(el, table) {
     el.style.cursor = 'grabbing';
     startDrag(e.clientX, e.clientY);
     const mm = e2 => moveDrag(e2.clientX, e2.clientY);
-    const mu = () => {
-      endDrag();
-      document.removeEventListener('mousemove', mm);
-      document.removeEventListener('mouseup', mu);
-    };
+    const mu = () => { endDrag(); document.removeEventListener('mousemove',mm); document.removeEventListener('mouseup',mu); };
     document.addEventListener('mousemove', mm);
     document.addEventListener('mouseup', mu);
   });
@@ -781,37 +881,25 @@ function attachDrag(el, table) {
     const t = e.touches[0];
     startDrag(t.clientX, t.clientY);
   }, { passive: true });
-
   el.addEventListener('touchmove', e => {
     if (e.touches.length !== 1) return;
-    e.preventDefault();
-    touchMoved = true;
+    e.preventDefault(); touchMoved = true;
     const t = e.touches[0];
     moveDrag(t.clientX, t.clientY);
   }, { passive: false });
-
   el.addEventListener('touchend', e => {
-    if (touchMoved) {
-      e.preventDefault();
-      endDrag();
-    }
-    // if not moved, let the click event fire for selection
+    if (touchMoved) { e.preventDefault(); endDrag(); }
   });
 }
 
 function tableMargin(t) {
-  if (t.type === 'round') return t.size / 2 + 1;
-  if (t.type === 'rect')  return t.size * 0.65 / 2 + 1;
-  return t.size * 0.38 / 2 + 1;
+  if (t.type==='round') return t.size/2+1;
+  if (t.type==='rect')  return t.size*0.65/2+1;
+  return t.size*0.38/2+1;
 }
-
 function svgPtFromXY(cx, cy, svg) {
-  const p = svg.createSVGPoint();
-  p.x = cx; p.y = cy;
+  const p = svg.createSVGPoint(); p.x=cx; p.y=cy;
   return p.matrixTransform(svg.getScreenCTM().inverse());
-}
-function svgPt(e, svg) {
-  return svgPtFromXY(e.clientX, e.clientY, svg);
 }
 
 // ══════════════════════════════════════════
@@ -820,54 +908,48 @@ function svgPt(e, svg) {
 function addTable() {
   const chairs = +document.getElementById('add-chairs').value || 8;
   const size   = +document.getElementById('add-size').value   || 5;
-  const x = S.room.w / 2 + (Math.random() - .5) * 8;
-  const y = S.room.h / 2 + (Math.random() - .5) * 8;
-  const t = {
-    id:     S.nextId++,
-    type:   S.addType,
-    chairs, size,
-    x, y,
-    rot:    0,
-    color:  COLORS[0].hex,
-    name:   `T${S.nextId - 1}`,
-  };
+  const x = S.room.w/2 + (Math.random()-.5)*8;
+  const y = S.room.h/2 + (Math.random()-.5)*8;
+  const t = { id: S.nextId++, type: S.addType, chairs, size, x, y, rot: 0, color: COLORS[0].hex, name: `T${S.nextId-1}` };
   S.tables.push(t);
   selectTable(t.id);
   rebuild();
-  if (window.innerWidth <= 768) closeSidebar();
 }
 
 function selectTable(id) {
   S.selId = id ?? null;
   const t = getSelected();
-  const panel  = document.getElementById('sel-panel');
-  const noSel  = document.getElementById('no-sel');
+
+  // Desktop panel
+  const panel = document.getElementById('sel-panel');
+  const noSel = document.getElementById('no-sel');
   if (t) {
-    panel.classList.add('visible');
-    noSel.style.display = 'none';
+    panel.classList.add('visible'); noSel.style.display = 'none';
     document.getElementById('s-name').value   = t.name;
     document.getElementById('s-chairs').value = t.chairs;
     document.getElementById('s-size').value   = t.size;
     document.getElementById('s-rot').value    = t.rot;
     document.getElementById('rot-val').textContent = `${t.rot}°`;
-    // sync color swatches
-    document.querySelectorAll('#swatch-row .swatch').forEach(s => {
-      s.classList.toggle('active', s.dataset.hex === t.color);
-    });
+    document.querySelectorAll('#swatch-row .swatch').forEach(s =>
+      s.classList.toggle('active', s.dataset.hex === t.color)
+    );
   } else {
-    panel.classList.remove('visible');
-    noSel.style.display = '';
+    panel.classList.remove('visible'); noSel.style.display = '';
   }
+
+  // Mobile sheet
+  if (isMobile()) {
+    if (t) openSheet(t);
+    else   dismissSheet();
+  }
+
   rebuild();
 }
 
-function getSelected() {
-  return S.tables.find(t => t.id === S.selId) ?? null;
-}
+function getSelected() { return S.tables.find(t => t.id === S.selId) ?? null; }
 
 function pushEdit() {
-  const t = getSelected();
-  if (!t) return;
+  const t = getSelected(); if (!t) return;
   t.name   = document.getElementById('s-name').value;
   t.chairs = +document.getElementById('s-chairs').value || t.chairs;
   t.size   = +document.getElementById('s-size').value   || t.size;
@@ -880,14 +962,14 @@ function deleteSelected() {
   if (!S.selId) return;
   S.tables = S.tables.filter(t => t.id !== S.selId);
   S.selId  = null;
+  dismissSheet();
   selectTable(null);
   rebuild();
 }
 
 function duplicateSelected() {
-  const t = getSelected();
-  if (!t) return;
-  const c = { ...t, id: S.nextId++, x: t.x + 3, y: t.y + 3, name: `T${S.nextId - 1}` };
+  const t = getSelected(); if (!t) return;
+  const c = { ...t, id: S.nextId++, x: t.x+3, y: t.y+3, name: `T${S.nextId-1}` };
   S.tables.push(c);
   selectTable(c.id);
   rebuild();
@@ -896,23 +978,15 @@ function duplicateSelected() {
 function clearAll() {
   if (!S.tables.length) return;
   if (confirm('Remove all tables?')) {
-    S.tables = []; S.selId = null;
-    selectTable(null); rebuild();
+    S.tables=[]; S.selId=null; dismissSheet(); selectTable(null); rebuild();
   }
 }
 
-// Auto arrange in even grid
 function autoLayout() {
   if (!S.tables.length) return;
-  const n    = S.tables.length;
-  const cols = Math.ceil(Math.sqrt(n));
-  const rows = Math.ceil(n / cols);
-  const xsp  = S.room.w / (cols + 1);
-  const ysp  = S.room.h / (rows + 1);
-  S.tables.forEach((t, i) => {
-    t.x = xsp * (i % cols + 1);
-    t.y = ysp * (Math.floor(i / cols) + 1);
-  });
+  const n=S.tables.length, cols=Math.ceil(Math.sqrt(n)), rows=Math.ceil(n/cols);
+  const xsp=S.room.w/(cols+1), ysp=S.room.h/(rows+1);
+  S.tables.forEach((t,i) => { t.x=xsp*(i%cols+1); t.y=ysp*(Math.floor(i/cols)+1); });
   rebuild();
 }
 
@@ -922,80 +996,84 @@ function autoLayout() {
 function applyRoom() {
   const w = +document.getElementById('room-w').value;
   const h = +document.getElementById('room-l').value;
-  if (w >= 10 && h >= 10) {
-    S.room.w = w; S.room.h = h;
-    rebuild(); fitZoom();
-  }
+  if (w>=10 && h>=10) { S.room.w=w; S.room.h=h; rebuild(); fitZoom(); }
 }
 
 // ══════════════════════════════════════════
-//  ZOOM / DISPLAY TOGGLES
+//  ZOOM / TOGGLES
 // ══════════════════════════════════════════
 function zoom(delta) {
-  S.zoom = clamp(S.zoom + delta, 0.25, 3);
+  S.zoom = clamp(S.zoom+delta, 0.25, 3);
   syncZoomLabel(); rebuild();
 }
 
 function fitZoom() {
   const wrap = document.getElementById('canvas-wrap');
-  const rw   = S.room.w * S.PX + S.PAD * 2;
-  const rh   = S.room.h * S.PX + S.PAD * 2;
-  const zw   = (wrap.clientWidth  - 20) / rw;
-  const zh   = (wrap.clientHeight - 20) / rh;
-  S.zoom = clamp(Math.min(zw, zh), 0.25, 2);
+  const rw = S.room.w*S.PX+S.PAD*2, rh = S.room.h*S.PX+S.PAD*2;
+  S.zoom = clamp(Math.min((wrap.clientWidth-20)/rw, (wrap.clientHeight-20)/rh), 0.25, 2);
   syncZoomLabel(); rebuild();
 }
 
 function syncZoomLabel() {
-  document.getElementById('zoom-label').textContent = Math.round(S.zoom * 100) + '%';
+  const pct = Math.round(S.zoom*100)+'%';
+  document.getElementById('zoom-label').textContent = pct;
+  const ml = document.getElementById('mob-zoom-lbl');
+  if (ml) ml.textContent = pct;
 }
 
 function toggleGrid() {
   S.grid = !S.grid;
-  document.getElementById('grid-btn').textContent = `Grid: ${S.grid ? 'ON' : 'OFF'}`;
+  document.getElementById('grid-btn').textContent = `Grid: ${S.grid?'ON':'OFF'}`;
   rebuild();
 }
-
-function toggleSnap() {
-  S.snap = !S.snap;
-  document.getElementById('snap-btn').textContent = `Snap: ${S.snap ? 'ON' : 'OFF'}`;
-}
-
-function toggleLabels() {
-  S.labels = !S.labels;
-  document.getElementById('label-btn').textContent = `Labels: ${S.labels ? 'ON' : 'OFF'}`;
+function mobToggleGrid() {
+  S.grid = !S.grid;
+  document.getElementById('grid-btn').textContent = `Grid: ${S.grid?'ON':'OFF'}`;
+  document.getElementById('mob-grid-btn').classList.toggle('on', S.grid);
   rebuild();
 }
+function toggleSnap()   { S.snap=!S.snap; document.getElementById('snap-btn').textContent=`Snap: ${S.snap?'ON':'OFF'}`; }
+function toggleLabels() { S.labels=!S.labels; document.getElementById('label-btn').textContent=`Labels: ${S.labels?'ON':'OFF'}`; rebuild(); }
 
 // ══════════════════════════════════════════
 //  TABLE TYPE PICKER
 // ══════════════════════════════════════════
 function pickType(type) {
   S.addType = type;
-  ['round','rect','long'].forEach(k =>
-    document.getElementById('tc-' + k).classList.toggle('active', k === type)
-  );
-  // sensible defaults
-  const defaults = { round: [8, 5], rect: [6, 5], long: [12, 8] };
-  const [ch, sz] = defaults[type];
+  ['round','rect','long'].forEach(k => document.getElementById('tc-'+k).classList.toggle('active', k===type));
+  const defaults = { round:[8,5], rect:[6,5], long:[12,8] };
+  const [ch,sz] = defaults[type];
   document.getElementById('add-chairs').value = ch;
   document.getElementById('add-size').value   = sz;
+}
+
+function pickTypeM(type) {
+  pickType(type);
+  ['round','rect','long'].forEach(k => document.getElementById('mbt-'+k).classList.toggle('active', k===type));
 }
 
 // ══════════════════════════════════════════
 //  STATS
 // ══════════════════════════════════════════
 function updateStats() {
-  const seats   = S.tables.reduce((s, t) => s + t.chairs, 0);
-  const areaUsed = S.tables.reduce((s, t) => {
-    const a = t.type === 'round' ? Math.PI * (t.size/2)**2 : t.size * t.size;
-    return s + a * 1.8; // include chair clearance
+  const seats    = S.tables.reduce((s,t) => s+t.chairs, 0);
+  const areaUsed = S.tables.reduce((s,t) => {
+    const a = t.type==='round' ? Math.PI*(t.size/2)**2 : t.size*t.size;
+    return s+a*1.8;
   }, 0);
-  const roomArea = S.room.w * S.room.h;
+  const roomArea = S.room.w*S.room.h;
   document.getElementById('st-tables').textContent = S.tables.length;
   document.getElementById('st-seats').textContent  = seats;
-  document.getElementById('st-room').textContent   = `${S.room.w} \u00D7 ${S.room.h} ft`;
-  document.getElementById('st-used').textContent   = Math.min(100, Math.round(areaUsed / roomArea * 100)) + '%';
+  document.getElementById('st-room').textContent   = `${S.room.w}\u00D7${S.room.h} ft`;
+  document.getElementById('st-used').textContent   = Math.min(100,Math.round(areaUsed/roomArea*100))+'%';
+  // Mobile stats strip
+  const mst = document.getElementById('mob-st-tables');
+  const mss = document.getElementById('mob-st-seats');
+  if (mst) mst.textContent = S.tables.length;
+  if (mss) mss.textContent = seats;
+  // Mobile room button
+  const rl = document.getElementById('mob-room-lbl');
+  if (rl) rl.textContent = `${S.room.w} \u00D7 ${S.room.h} ft`;
 }
 
 // ══════════════════════════════════════════
@@ -1004,25 +1082,20 @@ function updateStats() {
 function exportPNG() {
   const svg    = document.getElementById('ballroom-svg');
   const serial = new XMLSerializer().serializeToString(svg);
-  const blob   = new Blob([serial], { type: 'image/svg+xml' });
+  const blob   = new Blob([serial], { type:'image/svg+xml' });
   const url    = URL.createObjectURL(blob);
-
-  const vb    = svg.viewBox.baseVal;
-  const scale = 2;
+  const vb     = svg.viewBox.baseVal;
+  const scale  = 2;
   const canvas = document.createElement('canvas');
-  canvas.width  = vb.width  * scale;
-  canvas.height = vb.height * scale;
+  canvas.width  = vb.width*scale;
+  canvas.height = vb.height*scale;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#12121e';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+  ctx.fillStyle='#12121e'; ctx.fillRect(0,0,canvas.width,canvas.height);
   const img = new Image();
   img.onload = () => {
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     const a = document.createElement('a');
-    a.download = 'ballroom-layout.png';
-    a.href = canvas.toDataURL('image/png');
-    a.click();
+    a.download='ballroom-layout.png'; a.href=canvas.toDataURL('image/png'); a.click();
     URL.revokeObjectURL(url);
   };
   img.src = url;
@@ -1032,81 +1105,150 @@ function exportPNG() {
 //  KEYBOARD
 // ══════════════════════════════════════════
 document.addEventListener('keydown', e => {
-  if (e.key === 'Delete' || e.key === 'Backspace') {
-    if (document.activeElement.tagName === 'INPUT') return;
-    deleteSelected();
-  }
-  if (e.key === 'Escape') { S.selId = null; selectTable(null); }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
-    e.preventDefault(); duplicateSelected();
-  }
-  if (e.key === '=' || e.key === '+') zoom(+0.1);
-  if (e.key === '-')                  zoom(-0.1);
-  if (e.key === '0')                  fitZoom();
+  if ((e.key==='Delete'||e.key==='Backspace') && document.activeElement.tagName!=='INPUT') deleteSelected();
+  if (e.key==='Escape') { S.selId=null; selectTable(null); }
+  if ((e.ctrlKey||e.metaKey) && e.key==='d') { e.preventDefault(); duplicateSelected(); }
+  if (e.key==='='||e.key==='+') zoom(+0.1);
+  if (e.key==='-') zoom(-0.1);
+  if (e.key==='0') fitZoom();
 });
 
 // deselect on canvas background click
 document.getElementById('canvas-wrap').addEventListener('click', e => {
-  if (e.target === e.currentTarget ||
-      e.target.id === 'ballroom-svg' ||
-      e.target.tagName === 'rect' && !e.target.closest('.tbl-group')) {
-    S.selId = null; selectTable(null);
+  if (e.target===e.currentTarget || e.target.id==='ballroom-svg' ||
+      (e.target.tagName==='rect' && !e.target.closest('.tbl-group'))) {
+    S.selId=null; selectTable(null);
   }
 });
 
 // scroll-to-zoom
 document.getElementById('canvas-wrap').addEventListener('wheel', e => {
-  e.preventDefault();
-  zoom(e.deltaY < 0 ? 0.1 : -0.1);
+  e.preventDefault(); zoom(e.deltaY<0 ? 0.1 : -0.1);
 }, { passive: false });
 
 // pinch-to-zoom
 let lastPinchDist = null;
 const cw = document.getElementById('canvas-wrap');
 cw.addEventListener('touchstart', e => {
-  if (e.touches.length === 2) {
-    lastPinchDist = Math.hypot(
-      e.touches[1].clientX - e.touches[0].clientX,
-      e.touches[1].clientY - e.touches[0].clientY
-    );
-  }
+  if (e.touches.length===2) lastPinchDist = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
 }, { passive: true });
 cw.addEventListener('touchmove', e => {
-  if (e.touches.length === 2 && lastPinchDist !== null) {
+  if (e.touches.length===2 && lastPinchDist!==null) {
     e.preventDefault();
-    const dist = Math.hypot(
-      e.touches[1].clientX - e.touches[0].clientX,
-      e.touches[1].clientY - e.touches[0].clientY
-    );
-    zoom((dist - lastPinchDist) / 120);
+    const dist = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
+    zoom((dist-lastPinchDist)/120);
     lastPinchDist = dist;
   }
 }, { passive: false });
-cw.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
+cw.addEventListener('touchend', () => { lastPinchDist=null; }, { passive: true });
 
-// ── SIDEBAR TOGGLE (mobile) ──────────────
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebar-backdrop').classList.toggle('visible');
+// ══════════════════════════════════════════
+//  MOBILE SHEET
+// ══════════════════════════════════════════
+function openSheet(t) {
+  document.getElementById('mob-name').value          = t.name;
+  document.getElementById('mob-chairs-val').textContent = t.chairs;
+  document.getElementById('mob-size-val').textContent   = t.size;
+  document.getElementById('mob-rot').value           = t.rot;
+  document.getElementById('mob-rot-val').textContent = `${t.rot}°`;
+  syncMobColors(t.color);
+  document.getElementById('mob-sheet').classList.add('open');
 }
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebar-backdrop').classList.remove('visible');
+
+function dismissSheet() {
+  document.getElementById('mob-sheet').classList.remove('open');
+  if (isMobile() && S.selId) { S.selId=null; rebuild(); }
 }
+
+function pushMobEdit() {
+  const t = getSelected(); if (!t) return;
+  t.name = document.getElementById('mob-name').value;
+  t.rot  = +document.getElementById('mob-rot').value || 0;
+  document.getElementById('mob-rot-val').textContent = `${t.rot}°`;
+  // keep desktop in sync
+  document.getElementById('s-name').value = t.name;
+  document.getElementById('s-rot').value  = t.rot;
+  document.getElementById('rot-val').textContent = `${t.rot}°`;
+  rebuild();
+}
+
+function adjustProp(prop, delta) {
+  const t = getSelected(); if (!t) return;
+  if (prop==='chairs') {
+    t.chairs = clamp(t.chairs+delta, 1, 40);
+    document.getElementById('mob-chairs-val').textContent = t.chairs;
+    document.getElementById('s-chairs').value = t.chairs;
+  } else {
+    t.size = Math.round((clamp(t.size+delta, 2, 30))*10)/10;
+    document.getElementById('mob-size-val').textContent = t.size;
+    document.getElementById('s-size').value = t.size;
+  }
+  rebuild();
+}
+
+// swipe-down handle to dismiss sheet
+function setupSheetSwipe() {
+  const handle = document.getElementById('mob-handle');
+  const sheet  = document.getElementById('mob-sheet');
+  let sy = 0;
+  handle.addEventListener('touchstart', e => { sy = e.touches[0].clientY; }, { passive: true });
+  handle.addEventListener('touchmove',  e => {
+    const dy = e.touches[0].clientY - sy;
+    if (dy > 0) sheet.style.transform = `translateY(${dy}px)`;
+  }, { passive: true });
+  handle.addEventListener('touchend', e => {
+    const dy = e.changedTouches[0].clientY - sy;
+    sheet.style.transform = '';
+    if (dy > 60) dismissSheet();
+  });
+}
+
+// ══════════════════════════════════════════
+//  MOBILE ROOM MODAL
+// ══════════════════════════════════════════
+function showMobRoom() {
+  S.mobRoomW = S.room.w;
+  S.mobRoomH = S.room.h;
+  document.getElementById('mob-rw-val').textContent = S.mobRoomW;
+  document.getElementById('mob-rl-val').textContent = S.mobRoomH;
+  document.getElementById('mob-room-modal').classList.add('open');
+}
+
+function hideMobRoom() {
+  document.getElementById('mob-room-modal').classList.remove('open');
+}
+
+function adjustRoom(dim, delta) {
+  if (dim==='w') {
+    S.mobRoomW = clamp(S.mobRoomW+delta, 10, 300);
+    document.getElementById('mob-rw-val').textContent = S.mobRoomW;
+  } else {
+    S.mobRoomH = clamp(S.mobRoomH+delta, 10, 300);
+    document.getElementById('mob-rl-val').textContent = S.mobRoomH;
+  }
+}
+
+function applyMobRoom() {
+  S.room.w = S.mobRoomW;
+  S.room.h = S.mobRoomH;
+  document.getElementById('room-w').value = S.room.w;
+  document.getElementById('room-l').value = S.room.h;
+  hideMobRoom();
+  rebuild(); fitZoom();
+}
+
+// close room modal on backdrop tap
+document.getElementById('mob-room-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('mob-room-modal')) hideMobRoom();
+});
 
 // ══════════════════════════════════════════
 //  UTILS
 // ══════════════════════════════════════════
-function svgEl(tag) {
-  return document.createElementNS('http://www.w3.org/2000/svg', tag);
-}
-
+function svgEl(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
 function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-
 function darken(hex, f) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
   return `rgb(${Math.round(r*f)},${Math.round(g*f)},${Math.round(b*f)})`;
 }
 </script>
