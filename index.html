@@ -480,7 +480,7 @@
           </div>
         </div>
         <label>Rotation</label>
-        <input type="range" id="s-rot" min="0" max="359" value="0" oninput="pushEdit()" />
+        <input type="range" id="s-rot" min="0" max="345" step="15" value="0" oninput="pushEdit()" />
         <div class="val-display" id="rot-val">0°</div>
         <label>Table Color</label>
         <div class="swatch-row" id="swatch-row"></div>
@@ -599,7 +599,7 @@
 
       <div class="mob-rot-row" style="margin-top:14px">
         <span class="mob-step-label">Rotate</span>
-        <input type="range" id="mob-rot" min="0" max="359" value="0" oninput="pushMobEdit()" />
+        <input type="range" id="mob-rot" min="0" max="345" step="15" value="0" oninput="pushMobEdit()" />
         <span id="mob-rot-val">0°</span>
       </div>
 
@@ -831,9 +831,94 @@ function makeTableEl(t) {
     g.appendChild(sub);
   }
 
+  // Rotation handle (selected tables only)
+  if (sel) {
+    const dist = getHandleDist(t);
+    const line = svgEl('line');
+    line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+    line.setAttribute('x2', 0); line.setAttribute('y2', -dist);
+    line.setAttribute('stroke', '#e0534a'); line.setAttribute('stroke-width', '1.5');
+    line.setAttribute('stroke-dasharray', '4,3'); line.setAttribute('pointer-events', 'none');
+    g.appendChild(line);
+
+    const knob = svgEl('circle');
+    knob.setAttribute('cx', 0); knob.setAttribute('cy', -dist);
+    knob.setAttribute('r', 11);
+    knob.setAttribute('fill', '#e0534a'); knob.setAttribute('stroke', '#fff');
+    knob.setAttribute('stroke-width', '2'); knob.style.cursor = 'grab';
+    g.appendChild(knob);
+
+    const icon = svgEl('text');
+    icon.setAttribute('x', 0); icon.setAttribute('y', -dist);
+    icon.setAttribute('text-anchor', 'middle'); icon.setAttribute('dominant-baseline', 'middle');
+    icon.setAttribute('font-size', '12'); icon.setAttribute('fill', '#fff');
+    icon.setAttribute('pointer-events', 'none'); icon.textContent = '↻';
+    g.appendChild(icon);
+
+    attachRotDrag(knob, g, t);
+  }
+
   attachDrag(g, t);
   g.addEventListener('click', e => { e.stopPropagation(); selectTable(t.id); });
   return g;
+}
+
+function getHandleDist(t) {
+  if (t.type === 'round') return (t.size / 2) * S.PX + 30;
+  if (t.type === 'rect')  return t.size * 0.65 / 2 * S.PX + 30;
+  return t.size * 0.38 / 2 * S.PX + 30;
+}
+
+function attachRotDrag(knob, tableEl, table) {
+  const svg = document.getElementById('ballroom-svg');
+
+  function center() {
+    return { x: table.x * S.PX + S.PAD, y: table.y * S.PX + S.PAD };
+  }
+  function angleAt(cx, cy) {
+    const pt = svgPtFromXY(cx, cy, svg);
+    const c  = center();
+    return Math.atan2(pt.y - c.y, pt.x - c.x) * 180 / Math.PI;
+  }
+  function snapTo15(a) { return Math.round(a / 15) * 15; }
+  function applyRot(raw) {
+    table.rot = ((snapTo15(raw) % 360) + 360) % 360;
+    const c = center();
+    tableEl.setAttribute('transform', `translate(${c.x},${c.y}) rotate(${table.rot})`);
+    // sync panels
+    document.getElementById('s-rot').value = table.rot;
+    document.getElementById('rot-val').textContent = `${table.rot}°`;
+    document.getElementById('mob-rot').value = table.rot;
+    document.getElementById('mob-rot-val').textContent = `${table.rot}°`;
+  }
+
+  // Mouse
+  knob.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    e.preventDefault(); e.stopPropagation();
+    knob.style.cursor = 'grabbing';
+    const a0 = angleAt(e.clientX, e.clientY);
+    const r0 = table.rot;
+    const mm = e2 => applyRot(r0 + angleAt(e2.clientX, e2.clientY) - a0);
+    const mu = () => {
+      knob.style.cursor = 'grab';
+      document.removeEventListener('mousemove', mm);
+      document.removeEventListener('mouseup', mu);
+    };
+    document.addEventListener('mousemove', mm);
+    document.addEventListener('mouseup', mu);
+  });
+
+  // Touch
+  knob.addEventListener('touchstart', e => {
+    e.preventDefault(); e.stopPropagation();
+    const a0 = angleAt(e.touches[0].clientX, e.touches[0].clientY);
+    const r0 = table.rot;
+    const tm = e2 => { e2.preventDefault(); applyRot(r0 + angleAt(e2.touches[0].clientX, e2.touches[0].clientY) - a0); };
+    const te = () => { knob.removeEventListener('touchmove', tm); knob.removeEventListener('touchend', te); };
+    knob.addEventListener('touchmove', tm, { passive: false });
+    knob.addEventListener('touchend', te);
+  }, { passive: false });
 }
 
 function drawCircleTable(r, color, sel) {
