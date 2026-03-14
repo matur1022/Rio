@@ -230,7 +230,7 @@
         transform: translateY(calc(100% + 80px));
         transition: transform .32s cubic-bezier(.32,1,.4,1);
         z-index: 160;
-        max-height: 74vh;
+        max-height: 280px;
         overflow-y: auto;
         overscroll-behavior: contain;
       }
@@ -238,49 +238,52 @@
 
       .mob-handle-wrap {
         display: flex; justify-content: center;
-        padding: 10px 0 4px; cursor: pointer;
+        padding: 7px 0 3px; cursor: pointer;
       }
       .mob-handle {
-        width: 40px; height: 4px;
+        width: 36px; height: 4px;
         background: var(--border); border-radius: 2px;
       }
-      .mob-sheet-inner { padding: 4px 16px 28px; }
+      .mob-sheet-inner { padding: 2px 14px 12px; }
 
       /* Sheet title row */
       .mob-title-row {
-        display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+        display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
       }
       .mob-title-row input[type="text"] {
         flex: 1; background: var(--bg); border: 1px solid var(--border);
         border-radius: 10px; color: var(--text);
-        font-size: 1rem; font-weight: 600; padding: 10px 14px;
-        outline: none; height: 46px;
+        font-size: .95rem; font-weight: 600; padding: 7px 12px;
+        outline: none; height: 38px;
       }
       .mob-title-row input:focus { border-color: var(--accent2); }
       .mob-close-btn {
-        width: 42px; height: 42px; flex-shrink: 0;
+        width: 36px; height: 36px; flex-shrink: 0;
         border-radius: 50%; background: var(--surface2);
         border: 1px solid var(--border); color: var(--text-dim);
-        font-size: 1.1rem; cursor: pointer;
+        font-size: 1rem; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
       }
 
       /* Stepper rows */
+      .mob-steppers-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;
+      }
       .mob-stepper {
         display: flex; align-items: center;
-        background: var(--bg); border-radius: 12px;
-        padding: 10px 12px; margin-bottom: 10px; gap: 8px;
+        background: var(--bg); border-radius: 10px;
+        padding: 6px 8px; gap: 4px;
       }
-      .mob-step-label { flex: 1; font-size: .88rem; color: var(--text-dim); }
+      .mob-step-label { flex: 1; font-size: .78rem; color: var(--text-dim); }
       .mob-step-val {
-        font-size: 1.05rem; font-weight: 700; color: var(--text);
-        min-width: 58px; text-align: center;
+        font-size: .95rem; font-weight: 700; color: var(--text);
+        min-width: 28px; text-align: center;
       }
       .mob-step-btn {
-        width: 42px; height: 42px; flex-shrink: 0;
-        border-radius: 10px; background: var(--surface2);
+        width: 34px; height: 34px; flex-shrink: 0;
+        border-radius: 8px; background: var(--surface2);
         border: 1px solid var(--border); color: var(--text);
-        font-size: 1.4rem; font-weight: 300; cursor: pointer;
+        font-size: 1.3rem; font-weight: 300; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
         transition: background .1s;
       }
@@ -288,35 +291,35 @@
 
       /* Color row */
       .mob-section-label {
-        font-size: .7rem; font-weight: 700; text-transform: uppercase;
-        letter-spacing: 1px; color: var(--text-dim); margin: 14px 0 8px;
+        font-size: .68rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 1px; color: var(--text-dim); margin: 6px 0 5px;
       }
       #mob-color-row {
-        display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px;
+        display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 2px;
       }
       #mob-color-row .swatch {
-        width: 34px; height: 34px; border-radius: 8px;
+        width: 28px; height: 28px; border-radius: 6px;
         border: 3px solid transparent;
       }
       #mob-color-row .swatch.active { border-color: #fff; }
 
       /* Rotation row */
       .mob-rot-row {
-        display: flex; align-items: center; gap: 10px;
-        background: var(--bg); border-radius: 12px;
-        padding: 10px 14px; margin-bottom: 14px;
+        display: flex; align-items: center; gap: 8px;
+        background: var(--bg); border-radius: 10px;
+        padding: 6px 10px; margin-bottom: 6px;
       }
       .mob-rot-row .mob-step-label { flex-shrink: 0; }
       .mob-rot-row input[type="range"] { flex: 1; accent-color: var(--accent); }
       #mob-rot-val {
-        font-size: .88rem; font-weight: 700; color: var(--accent2);
-        min-width: 38px; text-align: right;
+        font-size: .82rem; font-weight: 700; color: var(--accent2);
+        min-width: 34px; text-align: right;
       }
 
       /* Action row */
-      .mob-action-row { display: flex; gap: 8px; }
+      .mob-action-row { display: flex; gap: 6px; }
       .mob-action-row .btn {
-        flex: 1; padding: 13px 6px; font-size: .84rem; font-weight: 700;
+        flex: 1; padding: 9px 4px; font-size: .8rem; font-weight: 700;
       }
 
       /* ── Sheet type picker (add mode) ── */
@@ -580,18 +583,19 @@
         <button class="mob-close-btn" onclick="dismissSheet()">&#10005;</button>
       </div>
 
-      <div class="mob-stepper">
-        <span class="mob-step-label">Chairs</span>
-        <button class="mob-step-btn" onclick="adjustProp('chairs',-1)">&#8722;</button>
-        <span class="mob-step-val" id="mob-chairs-val">8</span>
-        <button class="mob-step-btn" onclick="adjustProp('chairs',1)">+</button>
-      </div>
-
-      <div class="mob-stepper">
-        <span class="mob-step-label">Size (ft)</span>
-        <button class="mob-step-btn" onclick="adjustProp('size',-.5)">&#8722;</button>
-        <span class="mob-step-val" id="mob-size-val">5</span>
-        <button class="mob-step-btn" onclick="adjustProp('size',.5)">+</button>
+      <div class="mob-steppers-grid">
+        <div class="mob-stepper">
+          <span class="mob-step-label">Chairs</span>
+          <button class="mob-step-btn" onclick="adjustProp('chairs',-1)">&#8722;</button>
+          <span class="mob-step-val" id="mob-chairs-val">8</span>
+          <button class="mob-step-btn" onclick="adjustProp('chairs',1)">+</button>
+        </div>
+        <div class="mob-stepper">
+          <span class="mob-step-label">Size (ft)</span>
+          <button class="mob-step-btn" onclick="adjustProp('size',-.5)">&#8722;</button>
+          <span class="mob-step-val" id="mob-size-val">5</span>
+          <button class="mob-step-btn" onclick="adjustProp('size',.5)">+</button>
+        </div>
       </div>
 
       <div class="mob-section-label">Color</div>
@@ -1308,8 +1312,8 @@ function openSheet(t) {
 function scrollTableIntoView(t) {
   if (!isMobile()) return;
   const wrap = document.getElementById('canvas-wrap');
-  // Visible canvas height = screen - topbar(52) - bottom bar(72) - sheet (≈55vh)
-  const sheetH  = window.innerHeight * 0.55;
+  // Visible canvas height = screen - topbar(52) - bottom bar(72) - sheet (280px max)
+  const sheetH   = 280;
   const visibleH = window.innerHeight - 52 - 72 - sheetH;
   // Table center in scrollable canvas pixel space
   const cx = (t.x * S.PX + S.PAD) * S.zoom;
