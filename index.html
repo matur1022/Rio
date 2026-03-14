@@ -1302,6 +1302,25 @@ function openSheet(t) {
   document.getElementById('mob-rot-val').textContent = `${t.rot}°`;
   syncMobColors(t.color);
   document.getElementById('mob-sheet').classList.add('open');
+  scrollTableIntoView(t);
+}
+
+function scrollTableIntoView(t) {
+  if (!isMobile()) return;
+  const wrap = document.getElementById('canvas-wrap');
+  // Visible canvas height = screen - topbar(52) - bottom bar(72) - sheet (≈55vh)
+  const sheetH  = window.innerHeight * 0.55;
+  const visibleH = window.innerHeight - 52 - 72 - sheetH;
+  // Table center in scrollable canvas pixel space
+  const cx = (t.x * S.PX + S.PAD) * S.zoom;
+  const cy = (t.y * S.PX + S.PAD) * S.zoom;
+  setTimeout(() => {
+    wrap.scrollTo({
+      left: Math.max(0, cx - wrap.clientWidth  / 2),
+      top:  Math.max(0, cy - visibleH / 2),
+      behavior: 'smooth',
+    });
+  }, 80); // slight delay so sheet starts opening first
 }
 
 function openAddSheet() {
