@@ -755,17 +755,18 @@ function makeTableEl(t) {
 
   if (S.labels) {
     const lbl = svgEl('text');
-    lbl.setAttribute('x',0); lbl.setAttribute('y',5);
-    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('font-size','11');
-    lbl.setAttribute('font-family',"'Segoe UI',sans-serif"); lbl.setAttribute('fill','#3a3020');
-    lbl.setAttribute('font-weight','700'); lbl.setAttribute('pointer-events','none');
+    lbl.setAttribute('x',0); lbl.setAttribute('y','-5');
+    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('dominant-baseline','middle');
+    lbl.setAttribute('font-size','11'); lbl.setAttribute('font-family',"'Segoe UI',sans-serif");
+    lbl.setAttribute('fill','#3a3020'); lbl.setAttribute('font-weight','700');
+    lbl.setAttribute('pointer-events','none');
     lbl.textContent = t.name || `T${t.id}`;
     g.appendChild(lbl);
     const sub = svgEl('text');
-    sub.setAttribute('x',0); sub.setAttribute('y',17);
-    sub.setAttribute('text-anchor','middle'); sub.setAttribute('font-size','9');
-    sub.setAttribute('font-family',"'Segoe UI',sans-serif"); sub.setAttribute('fill','#6a5840');
-    sub.setAttribute('pointer-events','none');
+    sub.setAttribute('x',0); sub.setAttribute('y','7');
+    sub.setAttribute('text-anchor','middle'); sub.setAttribute('dominant-baseline','middle');
+    sub.setAttribute('font-size','9'); sub.setAttribute('font-family',"'Segoe UI',sans-serif");
+    sub.setAttribute('fill','#6a5840'); sub.setAttribute('pointer-events','none');
     sub.textContent = `${t.chairs} seats`;
     g.appendChild(sub);
   }
